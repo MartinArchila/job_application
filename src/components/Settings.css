@@ -1,0 +1,14 @@
+.settings-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  .setting-item {
+    margin-bottom: 15px;
+  }
+  
+  .setting-item label {
+    margin-right: 10px;
+    font-weight: 600;
+  }
+  
