@@ -4,7 +4,7 @@ import './NavBar.css';
 
 function NavBar(){
     return (
-        <div className="nav-bar">
+        <div className="navbar">
             <div className="nav-item">
                 <Link to="/dashboard"><i className="icon-dashboard"></i>Dashboard</Link>
             </div>

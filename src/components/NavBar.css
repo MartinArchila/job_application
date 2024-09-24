@@ -1,59 +1,53 @@
-.nav-bar {
-    width: 80px; /* Adjust width as needed */
-  height: 100vh; /* Full height */
+.navbar {
+  width: 250px; /* Adjust width as needed */
+  height: 100%; /* Full height */
+  top: 0;
+  left: 0;
   background-color: #dcebf5; /* Light blue background color */
-  display: flex;
+  display: flex; /* Stack the items vertically */
   flex-direction: column;
-  align-items: center;
-  padding: 20px 0;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+  position: absolute;
+  transition: transform 0.3s ease; /* Add a smooth transition effect */
+  /* align-items: center; */
+  /* padding: 20px 0; */
+  /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); */ /* Subtle shadow for separation */
 }
 
 /* Each navigation item */
 .nav-item {
-    width: 100%;
-    padding: 10px 0;
-    margin-bottom: 20px;
-    text-align: center;
-    transition: background-color 0.3s, color 0.3s;
-    cursor: pointer;
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 10px;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
 }
 
-.nav-item:last-child {
-    margin-top: auto; /* Push settings icon to the bottom */
-}
 
 
 /* Styling for the icons in the navigation items */
 .nav-item i {
-    font-size: 24px; /* Icon size */
-    margin-bottom: 5px;
-    display: block;
-    color: #6c757d; /* Default icon color */
-}
+  font-size: 24px; /* Icon size */
+  margin-bottom: 10px; /* This will add spacing between items */
+  /* display: block; */
+  color: #6c757d; /* Default icon color */
+} */
 
 /* Link styling */
 .nav-item a {
-    text-decoration: none;
-    color: #6c757d; /* Default link color */
-    font-size: 14px;
-    font-weight: 500;
+  text-decoration: none;
+  color: #6c757d; /* Default link color */
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* Hover effect */
-.nav-item:hover {
-    background-color: #e3f2fd; /* Slightly darker background on hover */
+.nav-item a:hover {
+  background-color: #e3f2fd; /* Slightly darker background on hover */
+  text-decoration: underline; /* Underline text on hover */
 }
 
 .nav-item:hover i, 
 .nav-item:hover a {
-  color: #007bff; /* Change icon and text color on hover */
+color: #007bff; /* Change icon and text color on hover */
 }
-
-/* Active link styling (if needed) */
-.nav-item.active i, 
-.nav-item.active a {
-  color: #007bff; /* Highlight active link */
-  font-weight: 600;
-}
-

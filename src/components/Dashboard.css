@@ -1,6 +1,9 @@
 .dashboard-container {
     padding: 20px;
     background-color: #f8f9fa;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
   
   .search-bar {

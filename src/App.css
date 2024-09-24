@@ -1,4 +1,60 @@
-.App {
+/* .App {
   text-align: center;
+} */
+
+.app-container {
+  display: flex;
+  height: 100vh;
 }
+
+.navbar-hover-area {
+  width: 50px;
+  position: relative;
+}
+
+.navbar-hover-area.visible .navbar {
+  transform: translateX(0); /* Slide in the navbar */
+}
+
+.navbar-hover-area .navbar {
+  transform: translateX(-250px); /* Initially hide the navbar by positioning it off-screen */
+}
+
+.navbar {
+  display: flex; /* hide the navbar by default */
+  flex-direction: column; /* stack the items vertically */
+  width: 250px; 
+  background-color: rgb(127, 202, 221);
+  position: absolute;
+  left: 0px; /* Hide the navbar off-screen */
+  top: 0;
+  height: 100%;
+  transition: transform 0.3s ease; /* Add a smooth transition effect */
+}
+
+.arrow-icon {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: lightskyblue;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1; /* Ensure the arrow icon is on top of the navbar */
+  transition: left 0.3s ease;
+}
+
+.navbar-hover-area.visible .arrow-icon {
+  left: 250px; /* Move the arrow icon to the right when the navbar is visible */
+}
+
+
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px; 
+  overflow-y: auto; /* Ensure the main content can scroll if it overflows */
+}
+
+
 
