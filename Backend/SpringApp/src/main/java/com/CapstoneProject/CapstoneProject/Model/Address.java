@@ -1,17 +1,23 @@
 package com.CapstoneProject.CapstoneProject.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="address")
 public class Address {
-
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "id")
         private int addressID;
+        @Column(name = "street")
         private String street;
+        @Column(name = "city")
         private String city;
+        @Column(name = "state")
         private String state;
+        @Column(name = "zipcode")
         private String zipCode;
+        @Column(name = "country")
         private String country;
 
         public Address(int addressID, String street, String city, String state, String zipCode, String country) {
@@ -31,7 +37,11 @@ public class Address {
             this.country = country;
         }
 
-        public int getAddressID() {
+        public Address() {
+
+        }
+
+    public int getAddressID() {
             return addressID;
         }
 

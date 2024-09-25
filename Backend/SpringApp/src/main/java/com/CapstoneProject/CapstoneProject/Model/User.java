@@ -21,14 +21,15 @@ public class User {
     private String lastName;
     @Column(name = "email")
     private String email;
-    @Column(name = "address")
-    private String address; // Create the address object(street, city, state, zipcode)
+    @OneToOne
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address; // Create the address object(street, city, state, zipcode)
     // private File Define how to store the resume if it is going to be as pdf, maybe as an object.
     @Column(name = "phone_number")
     private Long phoneNumber; // maybe add multiple phones number (In a list or different ones)
 
     //Resumen pdf?, object experience, education.
-    public User(String username, String firstName, String lastName, String email, String address, Long phoneNumber) {
+    public User(String username, String firstName, String lastName, String email, Address address, Long phoneNumber) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,7 +38,7 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public User(int id, String username, String firstName, String lastName, String email, String address, Long phoneNumber) {
+    public User(int id, String username, String firstName, String lastName, String email, Address address, Long phoneNumber) {
         this.userID = id;
         this.username = username;
         this.firstName = firstName;
@@ -91,13 +92,10 @@ public class User {
         this.email = email;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public Long getPhoneNumber() {
         return phoneNumber;
