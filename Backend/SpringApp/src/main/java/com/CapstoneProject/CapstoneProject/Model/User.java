@@ -1,9 +1,10 @@
-package com.CapstoneProject.CapstoneProject.Model;
+// This class is used to define how we want our data to look like. We are also mapping the data into
+// the database using the library jakarta. Each value is mapped to its respective column in the database
 
+package com.CapstoneProject.CapstoneProject.Model;
 
 import jakarta.persistence.*;
 
-import java.io.File;
 
 @Entity
 @Table(name="user")

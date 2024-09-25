@@ -1,3 +1,5 @@
+// In our Controller class we expose our methods to the front end. We create a path for each request of out object
+
 package com.CapstoneProject.CapstoneProject.Controller;
 
 import com.CapstoneProject.CapstoneProject.Model.User;
