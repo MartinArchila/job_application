@@ -1,38 +1,60 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar-hover-area {
+  width: 50px;
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navbar-hover-area.visible .navbar {
+  transform: translateX(0); /* Slide in the navbar */
 }
+
+.navbar-hover-area .navbar {
+  transform: translateX(-250px); /* Initially hide the navbar by positioning it off-screen */
+}
+
+.navbar {
+  display: flex; /* hide the navbar by default */
+  flex-direction: column; /* stack the items vertically */
+  width: 250px; 
+  background-color: rgb(127, 202, 221);
+  position: absolute;
+  left: 0px; /* Hide the navbar off-screen */
+  top: 0;
+  height: 100%;
+  transition: transform 0.3s ease; /* Add a smooth transition effect */
+}
+
+.arrow-icon {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: lightskyblue;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1; /* Ensure the arrow icon is on top of the navbar */
+  transition: left 0.3s ease;
+}
+
+.navbar-hover-area.visible .arrow-icon {
+  left: 250px; /* Move the arrow icon to the right when the navbar is visible */
+}
+
+
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px; 
+  overflow-y: auto; /* Ensure the main content can scroll if it overflows */
+}
+
+
+
