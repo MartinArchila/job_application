@@ -1,18 +1,31 @@
+// src/components/Navbar.js
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './NavBar.css';
+import { NavLink } from 'react-router-dom';
+import './Navbar.css'; // We'll create this CSS file next
 
-function NavBar(){
-    return (
-        <div className="navbar">
-            <div className="nav-item">
-                <Link to="/dashboard"><i className="icon-dashboard"></i>Dashboard</Link>
-            </div>
-            <div className="nav-item">
-                <Link to="/settings"><i className="icon-settings"></i>Settings</Link>
-            </div>
-        </div>
-    );
-}
+const Navbar = () => {
+  return (
+    <nav className="navbar">
+      <h1 className="navbar-brand">Future Astro - Job Applications Tracker</h1>
+      <ul className="navbar-links">
+        <li>
+          <NavLink exact to="/" activeClassName="active">
+            Dashboard
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/add-application" activeClassName="active">
+            Add Application
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/applications" activeClassName="active">
+            Applications
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
+  );
+};
 
-export default NavBar;
+export default Navbar;
