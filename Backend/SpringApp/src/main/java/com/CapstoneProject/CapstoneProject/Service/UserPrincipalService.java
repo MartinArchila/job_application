@@ -17,6 +17,7 @@ public class UserPrincipalService implements UserDetailsService {
     private UserRepo userRepo;
 
     @Override
+    //this method is used to load the user by username, it is used by the security framework to authenticate the user.
     public UserDetails loadUserByUsername(String username){
         User user = userRepo.findByUsername(username);
         if(user == null){

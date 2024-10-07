@@ -8,7 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
-public class UserPrincipal implements UserDetails {
+public class UserPrincipal implements UserDetails { //the implementation of UserDetails interface is used to provide core user information to the security framework.
+                                                    //this can also be implemented in our user class, but it is better to separate for better understanding of the code.
     private User user;
 
     public UserPrincipal(User user) {

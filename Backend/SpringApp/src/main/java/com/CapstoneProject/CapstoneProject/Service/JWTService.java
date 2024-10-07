@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import java.nio.charset.StandardCharsets;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -21,19 +20,18 @@ import java.util.function.Function;
 
 @Service
 public class JWTService {
-    private String secretKey = "secret";
+    private String secretKey = "secret"; //With this i Am generating a random secret key everytime the server starts, if the server restarts the secret key will change and all the tokens will be invalid.
 
     public JWTService() {
         // Generate a secret key
         try {
             KeyGenerator keyGen = KeyGenerator.getInstance("HmacSHA256");
             SecretKey key = keyGen.generateKey();
-            secretKey = Base64.getEncoder().encodeToString(key.getEncoded());
+            secretKey = Base64.getEncoder().encodeToString(key.getEncoded()); //Encoding the secret key to base64
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
     }
-
 
     public String generateToken(String username) {
         Map<String, Object> claims = new HashMap<>();
@@ -50,7 +48,7 @@ public class JWTService {
     }
 
     private SecretKey getKey() {
-        byte[] keyBytes = Base64.getDecoder().decode(secretKey);
+        byte[] keyBytes = Base64.getDecoder().decode(secretKey); //Decoding the secret key from base64
         return Keys.hmacShaKeyFor(keyBytes);
     }
 

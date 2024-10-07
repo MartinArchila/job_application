@@ -29,7 +29,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
+        //As we are using JWT we disable CSRF, CreateUser and Verify are the only endpoints that are not protected by JWT, meaning they are exposed to the public.
+        //All other endpoints are protected by JWT. We also disable session management as we are using JWT.
         return http.csrf(customizer -> customizer.disable()).
                 authorizeHttpRequests(request -> request
                         .requestMatchers("user/createUser", "user/verify").permitAll()

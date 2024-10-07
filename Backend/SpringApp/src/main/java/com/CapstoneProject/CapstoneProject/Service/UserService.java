@@ -50,7 +50,7 @@ public class UserService {
         Address address1 = new Address(address.getStreet(), address.getCity(), address.getState(), address.getZipCode(), address.getCountry());
 
         User user = new User(username, password, firstName, lastName, email, address1, phoneNumber);
-        user.setPassword(encoder.encode(user.getPassword()));
+        user.setPassword(encoder.encode(user.getPassword())); //Encrypting of the password before saving it to the database
 
         Optional<User> emailExists = userRepo.findByEmail(email);
         Optional<User> usernameExists = Optional.ofNullable(userRepo.findByUsername(username));
