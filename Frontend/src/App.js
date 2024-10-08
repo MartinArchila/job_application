@@ -6,17 +6,24 @@ import AddApplication from './pages/AddApplication';
 import Applications from './pages/Applications';
 import Navbar from './components/Navbar';
 import './styles.css'; 
+import theme from './theme';
+import { ThemeProvider } from '@mui/material/styles';
+import Box from '@mui/material/Box'; 
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route exact path="/" element={<Dashboard />} />
-        <Route path="/add-application" element={<AddApplication />} />
-        <Route path="/applications" element={<Applications />} />
-      </Routes>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Box sx={{ display: 'flex' }}>
+          <Navbar />
+          <Routes>
+            <Route exact path="/" element={<Dashboard />} />
+            <Route path="/add-application" element={<AddApplication />} />
+            <Route path="/applications" element={<Applications />} />
+          </Routes>
+        </Box>
+      </Router>
+    </ThemeProvider>
   );
 }
 

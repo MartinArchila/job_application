@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { Box, TextField, Button, MenuItem, Typography } from '@mui/material';
 
 const AddApplication = () => {
     const [success, setSuccess] = useState(false);
@@ -28,6 +29,7 @@ const AddApplication = () => {
         onSubmit: (values) => {
             //TODO: Prepare to send data to the backend here
             setIsSubmitting(true); // disable the submit button
+            setSuccess(false); // clear any previous success message
             setErrorMessage(''); // clear any previous error message
             console.log('Submitting form with values:', values); //FIXME: For debugging, remove this line later
             axios
@@ -36,7 +38,7 @@ const AddApplication = () => {
                     console.log('Application added:', response.data);
                     setSuccess(true);
                     // Optionally, redirect or reset form //TODO: Add this later
-                    formik.resetForm(); //FIXME: check if this works
+                    formik.resetForm(); //FIXME: check if this works, if not, use formik.resetForm();
               })
               .catch((error) => {
                     console.error('Error adding application:', error);
@@ -47,95 +49,90 @@ const AddApplication = () => {
               });
         },
     });
+
     return (
-        <div className="container">
-            <h1>Add Job Application</h1>
-            {success && (
-                <div className="success-message">
-                Application added successfully!
-                </div>
-            )}
-            {errorMessage && (<div className="error-message">{errorMessage}</div>)}
-            <form onSubmit={formik.handleSubmit}>
-                <div>
-                    <label htmlFor="companyName">Company Name</label>
-                    <input
-                        id="companyName"
-                        name="companyName"
-                        type="text"
-                        onChange={formik.handleChange}
-                        value={formik.values.companyName}
-                    />
-                    {formik.touched.companyName && formik.errors.companyName ? (
-                        <div className="error">{formik.errors.companyName}</div>
-                    ) : null}
-                </div>
-
-                <div>
-                    <label htmlFor="position">Position</label>
-                    <input
-                        id="position"
-                        name="position"
-                        type="text"
-                        onChange={formik.handleChange}
-                        value={formik.values.position}
-                    />
-                    {formik.touched.position && formik.errors.position ? (
-                        <div className="error">{formik.errors.position}</div>
-                    ) : null}
-                </div>
-
-                <div>
-                    <label htmlFor="applicationDate">Application Date</label>
-                    <input
-                        id="applicationDate"
-                        name="applicationDate"
-                        type="date"
-                        onChange={formik.handleChange}
-                        value={formik.values.applicationDate}
-                    />
-                    {formik.touched.applicationDate && formik.errors.applicationDate ? (
-                        <div className="error">{formik.errors.applicationDate}</div>
-                    ) : null}
-                </div>
-
-                <div>
-                    <label htmlFor="status">Status</label>
-                    <select
-                        id="status"
-                        name="status"
-                        onChange={formik.handleChange}
-                        value={formik.values.status}
-                    >
-                        <option value="Applied">Applied</option>
-                        <option value="Interviewing">Interviewing</option>
-                        <option value="Offered">Offered</option>
-                        <option value="Rejected">Rejected</option>
-                    </select>
-                    {formik.touched.status && formik.errors.status ? (
-                        <div className="error">{formik.errors.status}</div>
-                    ) : null}
-                    
-                </div>
-                <div>
-                    <label htmlFor="notes">Notes</label>
-                    <textarea
-                        id="notes"
-                        name="notes"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.notes}
-                    ></textarea>
-                    {formik.touched.notes && formik.errors.notes ? (
-                        <div className="error">{formik.errors.notes}</div>
-                    ) : null}
-                </div>
-                <button type="submit" disabled={isSubmitting}> 
-                    {isSubmitting? 'Submitting...' : 'Add Application'}
-                </button>
-            </form>
-        </div>
-    );
+        <Box sx={{ flexGrow: 1, p: 3 }}>
+          <Typography variant="h4" gutterBottom>
+            Add Job Application
+          </Typography>
+          {success && (
+            <Typography variant="body1" color="success.main">
+              Application added successfully!
+            </Typography>
+          )}
+          <form onSubmit={formik.handleSubmit}>
+            <TextField
+              fullWidth
+              id="companyName"
+              name="companyName"
+              label="Company Name"
+              value={formik.values.companyName}
+              onChange={formik.handleChange}
+              error={formik.touched.companyName && Boolean(formik.errors.companyName)}
+              helperText={formik.touched.companyName && formik.errors.companyName}
+              margin="normal"
+            />
+            <TextField
+              fullWidth
+              id="position"
+              name="position"
+              label="Position"
+              value={formik.values.position}
+              onChange={formik.handleChange}
+              error={formik.touched.position && Boolean(formik.errors.position)}
+              helperText={formik.touched.position && formik.errors.position}
+              margin="normal"
+            />
+            <TextField
+              fullWidth
+              id="applicationDate"
+              name="applicationDate"
+              label="Application Date"
+              type="date"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              value={formik.values.applicationDate}
+              onChange={formik.handleChange}
+              error={formik.touched.applicationDate && Boolean(formik.errors.applicationDate)}
+              helperText={formik.touched.applicationDate && formik.errors.applicationDate}
+              margin="normal"
+            />
+            <TextField
+              fullWidth
+              id="status"
+              name="status"
+              label="Status"
+              select
+              value={formik.values.status}
+              onChange={formik.handleChange}
+              error={formik.touched.status && Boolean(formik.errors.status)}
+              helperText={formik.touched.status && formik.errors.status}
+              margin="normal"
+            >
+              <MenuItem value="Applied">Applied</MenuItem>
+              <MenuItem value="Interviewing">Interviewing</MenuItem>
+              <MenuItem value="Offered">Offered</MenuItem>
+              <MenuItem value="Rejected">Rejected</MenuItem>
+            </TextField>
+            {/* Include Notes field if needed */}
+            <TextField
+              fullWidth
+              id="notes"
+              name="notes"
+              label="Notes"
+              multiline
+              rows={4}
+              value={formik.values.notes}
+              onChange={formik.handleChange}
+              margin="normal"
+            />
+            <Button color="primary" variant="contained" type="submit" disabled={formik.isSubmitting}>
+              {formik.isSubmitting ? 'Submitting...' : 'Add Application'}
+            </Button>
+          </form>
+        </Box>
+      );
 };
 
 export default AddApplication;
