@@ -1,37 +1,29 @@
-import React, { useState } from 'react';
+// src/App.js
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import NavBar from './components/NavBar';
-import Dashboard from './components/Dashboard';
-import Settings from './components/Settings';
-import './App.css';
+import Dashboard from './pages/Dashboard';
+import AddApplication from './pages/AddApplication';
+import Applications from './pages/Applications';
+import Navbar from './components/Navbar';
+import './styles.css'; 
+import theme from './theme';
+import { ThemeProvider } from '@mui/material/styles';
+import Box from '@mui/material/Box'; 
 
 function App() {
-  const [isNavBarVisible, setIsNavBarVisible] = useState(false);
-
-  const toggleNavBar = () => {
-    setIsNavBarVisible(!isNavBarVisible);
-  };
-
   return (
-    <Router>
-      <div className="app-container">
-        <div className={`navbar-hover-area ${isNavBarVisible ? 'visible' : ''}`}>
-          <div className="arrow-icon" onClick={toggleNavBar}>
-            <i className={`fa ${isNavBarVisible ? 'fa-arrow-left' : 'fa-arrow-right'}`}></i>
-          </div>
-          <NavBar />
-        </div>
-        <div className="main-content">
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Box sx={{ display: 'flex' }}>
+          <Navbar />
           <Routes>
-            {/* Use `element` instead of `component` */}
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/settings" element={<Settings />} />
-            {/* Optionally add a default route */}
-            <Route path="/" element={<Dashboard />} />
+            <Route exact path="/" element={<Dashboard />} />
+            <Route path="/add-application" element={<AddApplication />} />
+            <Route path="/applications" element={<Applications />} />
           </Routes>
-        </div>
-      </div>
-    </Router>
+        </Box>
+      </Router>
+    </ThemeProvider>
   );
 }
 
