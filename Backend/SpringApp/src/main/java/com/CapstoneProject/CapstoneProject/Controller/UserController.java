@@ -20,26 +20,24 @@ public class UserController {
     @PostMapping("/createUser")
     public ResponseEntity<User> createUser(@RequestBody User user)
     {
-        return service.createUser(user.getUsername(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getAddress(), user.getPhoneNumber());
+        return service.createUser(user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getAddress(), user.getPhoneNumber());
 
     }
 
-
-    @PutMapping ("/updateUser/{id}/{username}/{firstName}/{lastName}/{email}/{address}/{phoneNumber}")
-    public ResponseEntity<User> updateUser(@PathVariable int id,
-                                           @PathVariable String username,
-                                           @PathVariable String firstName,
-                                           @PathVariable String lastName,
-                                           @PathVariable String email,
-                                           @PathVariable Address address,
-                                           @PathVariable Long phoneNumber)
+    @PutMapping ("/updateUser/")
+    public ResponseEntity<User> updateUser(@RequestBody User user)
     {
-        return service.updateUser(id, username, firstName, lastName, email, address, phoneNumber);
+        return service.updateUser(user.getUserID(), user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getAddress(), user.getPhoneNumber());
 
     }
 
     @DeleteMapping ("/deleteUser/{id}")
         public ResponseEntity<User> deleteUser(@PathVariable int id){
             return service.deleteUser(id);
+    }
+
+    @PostMapping("/verify")
+        public String verify(@RequestBody User user){
+        return service.verify(user.getUsername(), user.getPassword());
     }
 }
