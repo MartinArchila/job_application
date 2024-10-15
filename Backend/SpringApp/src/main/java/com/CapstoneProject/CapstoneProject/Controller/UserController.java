@@ -37,7 +37,7 @@ public class UserController {
     }
 
     @PostMapping("/verify")
-    public String verify(@RequestBody User user){
+        public String verify(@RequestBody User user){
         return service.verify(user.getUsername(), user.getPassword());
     }
 }
