@@ -2,7 +2,6 @@
 
 package com.CapstoneProject.CapstoneProject.Controller;
 
-import com.CapstoneProject.CapstoneProject.Model.Address;
 import com.CapstoneProject.CapstoneProject.Model.User;
 import com.CapstoneProject.CapstoneProject.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class UserController {
     }
 
     @PostMapping("/verify")
-        public String verify(@RequestBody User user){
+        public ResponseEntity<String> verify(@RequestBody User user){
         return service.verify(user.getUsername(), user.getPassword());
     }
 }

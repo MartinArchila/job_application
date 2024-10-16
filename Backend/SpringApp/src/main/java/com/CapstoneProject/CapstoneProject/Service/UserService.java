@@ -94,12 +94,12 @@ public class UserService {
         return ResponseEntity.status(HttpStatus.OK).header("Success", "User has been deleted").body(new User());
     }
 
-    public String verify(String username, String password){ //Login method
+    public ResponseEntity<String> verify(String username, String password){ //Login method
         Authentication auth = authManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         if (auth.isAuthenticated()) {
-            return jwtService.generateToken(username);
+            return ResponseEntity.status(HttpStatus.OK).header("Success", "Validated").body(jwtService.generateToken(username));
         }
-        return "Invalid";
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).header("Error", "Id not found").body("Invalid credentials");
     }
 
 }

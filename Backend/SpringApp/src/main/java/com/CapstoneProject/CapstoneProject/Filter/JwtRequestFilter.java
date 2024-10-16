@@ -1,9 +1,7 @@
 package com.CapstoneProject.CapstoneProject.Filter;
 
-import com.CapstoneProject.CapstoneProject.Model.UserPrincipal;
 import com.CapstoneProject.CapstoneProject.Service.JWTService;
 import com.CapstoneProject.CapstoneProject.Service.UserPrincipalService;
-import com.CapstoneProject.CapstoneProject.Service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
