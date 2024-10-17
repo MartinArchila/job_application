@@ -7,11 +7,36 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login Info:", { username, password });
-    // Perform login action here (API call)
+    
+    const loginData = {
+      username: username,
+      password: password
+    };
+  
+    try {
+      const response = await fetch('http://localhost:8081/user/verify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData),
+      });
+  
+      if (response.ok) {
+        const result = await response.text(); // or await response.json() based on backend implementation
+        console.log("Login Successful:", result);
+        // Redirect or store token if applicable
+      } else {
+        console.error("Login failed");
+      }
+    } catch (error) {
+      console.error("An error occurred during login", error);
+    }
   };
+  
+  
 
   return (
     <div className="center-container">

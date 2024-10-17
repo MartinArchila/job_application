@@ -13,12 +13,14 @@ const Signup = () => {
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
     if (password !== confirmPassword) {
       alert("Passwords don't match!");
       return;
     }
+    
     const signupData = {
       username,
       firstName,
@@ -28,9 +30,28 @@ const Signup = () => {
       address,
       phoneNumber,
     };
-    console.log("Signup Info:", signupData);
-    // Perform signup action here (API call)
+  
+    try {
+      const response = await fetch('http://localhost:8081/user/createUser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(signupData),
+      });
+  
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Signup Successful:", result);
+        // Redirect or show success message
+      } else {
+        console.error("Signup failed");
+      }
+    } catch (error) {
+      console.error("An error occurred during signup", error);
+    }
   };
+  
 
   return (
     <div className="center-container">
