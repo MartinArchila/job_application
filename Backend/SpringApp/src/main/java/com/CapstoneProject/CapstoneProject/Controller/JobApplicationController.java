@@ -20,9 +20,7 @@ public class JobApplicationController {
     @PostMapping("/createJobApplication")
     public ResponseEntity<JobApplication> createJobApplication(@RequestBody JobApplication jobApplication) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        jobApplication.setUsername(username);
-        return service.createJobApplication(jobApplication.getUsername(), jobApplication.getCompanyName(), jobApplication.getJobDescription(), jobApplication.getDateApplied(), jobApplication.getStatus(), jobApplication.getNotes());
+        return service.createJobApplication(authentication.getName(), jobApplication.getCompanyName(), jobApplication.getJobDescription(), jobApplication.getDateApplied(), jobApplication.getStatus(), jobApplication.getNotes());
     }
 
     @GetMapping("/getJobApplications")
@@ -30,6 +28,16 @@ public class JobApplicationController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         return service.getJobApplications(username);
+    }
+
+    @PutMapping("/updateJobApplication")
+    public ResponseEntity<JobApplication> updateJobApplication(@RequestBody JobApplication jobApplication) {
+        return service.updateJobApplication(jobApplication.getApplicationID(), jobApplication.getCompanyName(), jobApplication.getJobDescription(), jobApplication.getDateApplied(), jobApplication.getStatus(), jobApplication.getNotes());
+    }
+
+    @DeleteMapping("/deleteJobApplication")
+    public ResponseEntity<JobApplication> deleteJobApplication(@RequestBody JobApplication jobApplication) {
+        return service.deleteJobApplication(jobApplication.getApplicationID());
     }
 
 }

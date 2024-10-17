@@ -2,9 +2,7 @@ package com.CapstoneProject.CapstoneProject.Service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +18,7 @@ import java.util.function.Function;
 
 @Service
 public class JWTService {
-    private String secretKey = "secret"; //With this i Am generating a random secret key everytime the server starts, if the server restarts the secret key will change and all the tokens will be invalid.
+    private String secretKey = "secret"; //With this I Am generating a random secret key everytime the server starts, if the server restarts the secret key will change and all the tokens will be invalid.
 
     public JWTService() {
         // Generate a secret key

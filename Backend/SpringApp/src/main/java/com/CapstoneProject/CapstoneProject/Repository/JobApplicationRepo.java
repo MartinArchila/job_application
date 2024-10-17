@@ -10,4 +10,5 @@ public interface JobApplicationRepo extends CrudRepository<JobApplication, Integ
 
     List<JobApplication> findByUsername(String username);
 
+    JobApplication findByApplicationID(int applicationID);
 }

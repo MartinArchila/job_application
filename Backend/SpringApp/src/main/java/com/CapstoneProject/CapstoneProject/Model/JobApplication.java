@@ -54,6 +54,15 @@ public class JobApplication {
         this.notes = notes;
     }
 
+    public JobApplication(int applicationID, String companyName, String jobDescription, String dateApplied, String status, String notes) {
+        this.applicationID = applicationID;
+        this.companyName = companyName;
+        this.jobDescription = jobDescription;
+        this.dateApplied = dateApplied;
+        this.status = status;
+        this.notes = notes;
+    }
+
     public int getApplicationID() {
         return applicationID;
     }
