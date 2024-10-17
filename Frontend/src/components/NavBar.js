@@ -5,7 +5,7 @@ import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/materia
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ListIcon from '@mui/icons-material/List';
-import './Navbar.css'; // We'll create this CSS file next
+import './NavBar.css'; // We'll create this CSS file next
 
 
 const Navbar = () => {
