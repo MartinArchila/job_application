@@ -11,12 +11,14 @@ import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box'; 
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Confirmation from './pages/signUpConfirmation';
 
 function App() {
   const location = useLocation(); // Get current route location
   
   // Pages where NavBar should be hidden
-  const hideNavBar = location.pathname === '/' || location.pathname === '/login' || location.pathname === '/signup';
+  const hideNavBar = location.pathname === '/' || location.pathname === '/login' || location.pathname === '/signup'
+  || location.pathname === '/confirmation';
 
   return (
     <ThemeProvider theme={theme}>
@@ -27,6 +29,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/add-application" element={<AddApplication />} />
           <Route path="/applications" element={<Applications />} />

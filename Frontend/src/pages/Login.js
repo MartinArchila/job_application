@@ -1,42 +1,40 @@
-// src/pages/Login.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './login-signup.css'; // Import the center.css file
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import axios from 'axios'; // Import axios for API calls
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // Initialize the navigate hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const loginData = {
-      username: username,
-      password: password
+      username,
+      password
     };
-  
+
     try {
-      const response = await fetch('http://localhost:8081/user/verify', {
-        method: 'POST',
+      // Perform the login API call
+      const response = await axios.post('http://localhost:8081/user/verify', loginData, {
         headers: {
           'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginData),
+        }
       });
-  
-      if (response.ok) {
-        const result = await response.text(); // or await response.json() based on backend implementation
-        console.log("Login Successful:", result);
-        // Redirect or store token if applicable
-      } else {
-        console.error("Login failed");
+
+      // Assuming a successful login (response status 200)
+      if (response.status === 200) {
+        console.log('Login successful:', response.data);
+
+        // Redirect the user to the dashboard or desired page
+        navigate('/dashboard'); // Change '/dashboard' to the route you want to navigate to
       }
     } catch (error) {
-      console.error("An error occurred during login", error);
+      console.error('Login failed:', error);
+      alert('Invalid credentials. Please try again.');
     }
   };
-  
-  
 
   return (
     <div className="center-container">
